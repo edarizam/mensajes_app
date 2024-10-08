@@ -1,5 +1,7 @@
 package com.platzi;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MensajeService {
@@ -22,7 +24,10 @@ public class MensajeService {
 
     }
 
-    public static void listarMensajes(){}
+    public static void listarMensajes(){
+        System.out.println();
+        MensajeDAO.leerMensajesDB(); //Realmente no deberían haber prints en la clase MensajeDAO, pero esto es más práctico
+    }
 
     public static void borrarMensaje(){}
 
