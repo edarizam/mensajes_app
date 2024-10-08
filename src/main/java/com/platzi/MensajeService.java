@@ -29,7 +29,14 @@ public class MensajeService {
         MensajeDAO.leerMensajesDB(); //Realmente no deberían haber prints en la clase MensajeDAO, pero esto es más práctico
     }
 
-    public static void borrarMensaje(){}
+    public static void borrarMensaje(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\nIndica el ID del mensaje a borrar: ");
+        int idSeleccionado = Integer.parseInt(sc.nextLine());
+
+        MensajeDAO.borrarMensajeDB(idSeleccionado);
+    }
 
     public static void editarMensaje(){}
 }
