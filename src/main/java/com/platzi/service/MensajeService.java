@@ -50,7 +50,10 @@ public class MensajeService {
         System.out.println("Escribe tu nuevo mensaje: ");
         String mensaje = sc.nextLine();
 
-        Mensaje registro = new Mensaje(null, null, idMensaje, mensaje);
+        Mensaje registro = new Mensaje();
+        registro.setMensaje(mensaje);
+        registro.setId_mensaje(idMensaje);
+
         MensajeDAO.actualizarMensajeDB(registro);
 
     }

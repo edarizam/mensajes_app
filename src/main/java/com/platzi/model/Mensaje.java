@@ -6,13 +6,15 @@ public class Mensaje {
     private String mensaje;
     private String autor_mensaje;
     private String fecha_mensaje;
+    private int id_usuario;
 
     public Mensaje(){}
 
-    public Mensaje(String autor_mensaje, String fecha_mensaje, int id_mensaje, String mensaje) {
+    public Mensaje(String autor_mensaje, String fecha_mensaje, int id_mensaje, int id_usuario, String mensaje) {
         this.autor_mensaje = autor_mensaje;
         this.fecha_mensaje = fecha_mensaje;
         this.id_mensaje = id_mensaje;
+        this.id_usuario = id_usuario;
         this.mensaje = mensaje;
     }
 
@@ -46,6 +48,14 @@ public class Mensaje {
 
     public void setFecha_mensaje(String fecha_mensaje) {
         this.fecha_mensaje = fecha_mensaje;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
 }
