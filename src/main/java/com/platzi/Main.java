@@ -3,6 +3,9 @@ package com.platzi;
 import java.sql.Connection;
 import java.util.Scanner;
 
+import com.platzi.database.Conexion;
+import com.platzi.service.MensajeService;
+
 public class Main {
     public static void main(String[] args) {
 

@@ -1,4 +1,4 @@
-package com.platzi;
+package com.platzi.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

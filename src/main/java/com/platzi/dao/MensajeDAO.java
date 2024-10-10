@@ -1,11 +1,12 @@
-package com.platzi;
+package com.platzi.dao;
 
-import javax.crypto.spec.PSource;
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.platzi.database.Conexion;
+import com.platzi.model.Mensaje;
 
 public class MensajeDAO {
 
@@ -34,7 +35,10 @@ public class MensajeDAO {
         }
     }
 
-    public static void leerMensajesDB(){
+    public static String leerMensajesDB(){
+
+        //Creamos el string a retornar
+        StringBuilder mensajesDB = new StringBuilder();
         //Creamos un objeto de conexión para realizar la conexion a la base de datos
         Conexion conexion = new Conexion();
 
@@ -58,11 +62,12 @@ public class MensajeDAO {
 
                 //Imprimos en pantalla el resultSet obtenido
                 while(rs.next()){
-                    System.out.println("ID: " + rs.getInt("id_mensaje"));
-                    System.out.println("Autor: " + rs.getString("autor_mensaje"));
-                    System.out.println("Contenido: " + rs.getString("mensaje"));
-                    System.out.println("Fecha: " + rs.getString("fecha_mensaje"));
-                    System.out.println();
+                    mensajesDB.append(
+                            "\nID: " + rs.getInt("id_mensaje") + "\n" +
+                            "Autor: " + rs.getString("autor_mensaje") + "\n" +
+                            "Contenido: " + rs.getString("mensaje") + "\n" +
+                            "Fecha: " + rs.getString("fecha_mensaje") + "\n"
+                    );
                 }
 
             } catch(SQLException e){
@@ -72,6 +77,8 @@ public class MensajeDAO {
         } catch(SQLException e){
             e.printStackTrace(); //Crear un mensaje que notifique que no se ha podido acceder a la base de datos
         }
+
+        return mensajesDB.toString();
 
     }
 
