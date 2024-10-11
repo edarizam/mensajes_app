@@ -14,6 +14,7 @@ public class UsuarioDAO {
     private static final String cantCreateUser = "No se ha podido realizar la consulta de crear un nuevo usuario";
     private static final String cantFindUser = "No se ha podido realizar la consulta de búsqueda de usuario";
     private static final String cantEditPassword = "No se ha podido realizar la consulta de cambio de contraseña";
+    private static final String cantDeleteUser = "No se ha podido realizar la consulta de eliminar usuario";
 
     public static void crearUsuarioDb(Usuario usuario) {
 
@@ -108,5 +109,28 @@ public class UsuarioDAO {
         } catch(SQLException e){
             System.out.println(cantConnectDatabase);
         }
+    }
+
+    public static void eliminarCuentaDb(String username) {
+        Conexion conexion = new Conexion();
+
+        try(Connection connectionDb = conexion.getConnection()) {
+
+            PreparedStatement ps = null;
+
+            try{
+                String query = "DELETE FROM usuarios WHERE username = ?;";
+
+                ps = connectionDb.prepareStatement(query);
+                ps.setString(1, username);
+
+                ps.executeUpdate();
+            } catch(SQLException e) {
+                System.out.println(cantDeleteUser);
+            }
+        } catch(SQLException e) {
+            System.out.println(cantConnectDatabase);
+        }
+
     }
 }

@@ -58,4 +58,24 @@ public class UsuarioService {
         UsuarioDAO.editarContraseniaUsuarioDB(nuevaContrasenia, usuario.getUsername());
         usuario.setPassword(nuevaContrasenia);
     }
+
+    public static void eliminarUsuario(Usuario usuario) {
+        Scanner sc = new Scanner(System.in);
+        int opcionMenu = 0;
+
+        do{
+            System.out.println("¿Desea borrar su cuenta?");
+            System.out.println("1. Sí");
+            System.out.println("2. No");
+
+            opcionMenu = Integer.parseInt(sc.nextLine());
+
+            if (opcionMenu == 1){
+                UsuarioDAO.eliminarCuentaDb(usuario.getUsername());
+
+            }
+
+        } while(opcionMenu != 1 && opcionMenu != 2);
+
+    }
 }

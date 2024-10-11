@@ -100,6 +100,7 @@ public class Main {
                     break;
 
                 case 6:
+                    UsuarioService.eliminarUsuario(usuarioProceso);
                     break;
 
                 case 7:
