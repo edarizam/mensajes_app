@@ -27,6 +27,7 @@ public class UsuarioService {
         usuarioProceso.setPassword(password);
 
         UsuarioDAO.crearUsuarioDb(usuarioProceso);
+        usuarioProceso = UsuarioDAO.validarUsuarioDB(username, password);
 
         return usuarioProceso;
 
@@ -59,7 +60,7 @@ public class UsuarioService {
         usuario.setPassword(nuevaContrasenia);
     }
 
-    public static void eliminarUsuario(Usuario usuario) {
+    public static boolean eliminarUsuario(Usuario usuario) {
         Scanner sc = new Scanner(System.in);
         int opcionMenu = 0;
 
@@ -72,10 +73,13 @@ public class UsuarioService {
 
             if (opcionMenu == 1){
                 UsuarioDAO.eliminarCuentaDb(usuario.getUsername());
+                return true;
 
             }
 
-        } while(opcionMenu != 1 && opcionMenu != 2);
+        } while(opcionMenu != 2);
 
+        return false;
     }
+
 }

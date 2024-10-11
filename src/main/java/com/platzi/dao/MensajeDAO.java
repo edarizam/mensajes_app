@@ -19,10 +19,13 @@ public class MensajeDAO {
 
             try{
 
-                String query = "INSERT INTO `mensajes` (`mensaje`, `autor_mensaje`) VALUES (?, ?);";
+                String query = "INSERT INTO `mensajes` (`fk_usuario`, `mensaje`, `autor_mensaje` ) VALUES (?, ?, ?);";
+
                 preparedStatement = conexion.prepareStatement(query);
-                preparedStatement.setString(1, mensaje.getMensaje());
-                preparedStatement.setString(2, mensaje.getAutor_mensaje());
+                preparedStatement.setInt(1, mensaje.getId_usuario());
+                preparedStatement.setString(2, mensaje.getMensaje());
+                preparedStatement.setString(3, mensaje.getAutor_mensaje());
+
                 preparedStatement.executeUpdate();
                 System.out.println("Mensaje creado");
 

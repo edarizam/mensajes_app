@@ -78,9 +78,12 @@ public class Main {
                 continue;
             }
 
+            boolean cuentaEliminada = false;
+            System.out.println(usuarioProceso.getId_usuario());
+
             switch (opcionMenu) {
                 case 1:
-                    MensajeService.crearMensaje();
+                    MensajeService.crearMensaje(usuarioProceso);
                     break;
 
                 case 2:
@@ -100,7 +103,7 @@ public class Main {
                     break;
 
                 case 6:
-                    UsuarioService.eliminarUsuario(usuarioProceso);
+                    cuentaEliminada = UsuarioService.eliminarUsuario(usuarioProceso);
                     break;
 
                 case 7:
@@ -112,7 +115,12 @@ public class Main {
 
             }
 
-        }while(opcionMenu != 6 && opcionMenu != 7);
+            if (cuentaEliminada) {
+                System.out.println("Su cuenta ha sido eliminada con éxito, Fin del programa.");
+                break;
+            }
+
+        }while(opcionMenu != 7);
 
     }
 }

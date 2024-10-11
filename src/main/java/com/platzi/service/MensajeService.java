@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 import com.platzi.model.Mensaje;
 import com.platzi.dao.MensajeDAO;
+import com.platzi.model.Usuario;
 
 public class MensajeService {
 
-    public static void crearMensaje(){
+    public static void crearMensaje(Usuario usuario){
         Scanner sc = new Scanner(System.in);
 
         System.out.println("\n===== Crear un mensaje =====");
@@ -15,12 +16,10 @@ public class MensajeService {
         System.out.println("Escribe tu mensaje: ");
         String mensaje = sc.nextLine();
 
-        System.out.println("Escribe tu nombre: ");
-        String nombre = sc.nextLine();
-
         Mensaje registro = new Mensaje();
         registro.setMensaje(mensaje);
-        registro.setAutor_mensaje(nombre);
+        registro.setAutor_mensaje(usuario.getUsername());
+        registro.setId_usuario(usuario.getId_usuario());
         MensajeDAO.crearMensajeDB(registro);
 
     }
