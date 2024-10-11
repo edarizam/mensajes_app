@@ -1,6 +1,5 @@
 package com.platzi;
 
-import java.sql.Connection;
 import java.util.Scanner;
 
 import com.platzi.database.Conexion;
@@ -67,8 +66,9 @@ public class Main {
             System.out.println("2. Listar Mensaje");
             System.out.println("3. Editar Mensaje");
             System.out.println("4. Eliminar Mensaje");
-            System.out.println("5. Editar información de usuario");
-            System.out.println("6. Salir");
+            System.out.println("5. Cambiar contraseña");
+            System.out.println("6. Eliminar cuenta");
+            System.out.println("7. Salir");
             System.out.println("Selecciona una opción: ");
 
             try {
@@ -96,9 +96,13 @@ public class Main {
                     break;
 
                 case 5:
+                    UsuarioService.cambiarContrasenia(usuarioProceso);
                     break;
 
                 case 6:
+                    break;
+
+                case 7:
                     System.out.println("\nHasta luego, feliz día");
                     break;
 
@@ -107,7 +111,7 @@ public class Main {
 
             }
 
-        }while(opcionMenu != 5);
+        }while(opcionMenu != 6 && opcionMenu != 7);
 
     }
 }

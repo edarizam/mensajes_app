@@ -44,8 +44,18 @@ public class UsuarioService {
         System.out.println("Digite su contraseña:");
         String password = sc.nextLine();
 
-        usuarioProceso = UsuarioDAO.validarUsuario(username, password);
+        usuarioProceso = UsuarioDAO.validarUsuarioDB(username, password);
 
         return usuarioProceso;
+    }
+
+    public static void cambiarContrasenia(Usuario usuario) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\nDigite la nueva contraseña:");
+        String nuevaContrasenia = sc.nextLine();
+
+        UsuarioDAO.editarContraseniaUsuarioDB(nuevaContrasenia, usuario.getUsername());
+        usuario.setPassword(nuevaContrasenia);
     }
 }

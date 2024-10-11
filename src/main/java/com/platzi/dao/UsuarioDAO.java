@@ -13,6 +13,7 @@ public class UsuarioDAO {
     private static final String cantConnectDatabase = "No se ha podido realizar la conexión con base de datos";
     private static final String cantCreateUser = "No se ha podido realizar la consulta de crear un nuevo usuario";
     private static final String cantFindUser = "No se ha podido realizar la consulta de búsqueda de usuario";
+    private static final String cantEditPassword = "No se ha podido realizar la consulta de cambio de contraseña";
 
     public static void crearUsuarioDb(Usuario usuario) {
 
@@ -47,7 +48,7 @@ public class UsuarioDAO {
 
     }
 
-    public static Usuario validarUsuario(String username, String password) {
+    public static Usuario validarUsuarioDB(String username, String password) {
         Conexion conexion = new Conexion();
         Usuario usuarioEncontrado = null;
 
@@ -81,5 +82,31 @@ public class UsuarioDAO {
 
         return usuarioEncontrado;
 
+    }
+
+    public static void editarContraseniaUsuarioDB(String password, String username) {
+        Conexion conexion = new Conexion();
+
+        try (Connection connectionDb = conexion.getConnection()) {
+
+            PreparedStatement ps = null;
+
+            try{
+
+                String query = "UPDATE usuarios SET password = ? WHERE username = ?;";
+
+                ps = connectionDb.prepareStatement(query);
+                ps.setString(1, password);
+                ps.setString(2, username);
+
+                ps.executeUpdate();
+
+            } catch(SQLException e){
+                System.out.println(cantEditPassword);
+            }
+
+        } catch(SQLException e){
+            System.out.println(cantConnectDatabase);
+        }
     }
 }
